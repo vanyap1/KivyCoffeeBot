@@ -1,0 +1,20 @@
+firstly nned to install - virtualenv
+    $> sudo apt install python3-virtualenv
+    
+    next - create envirement 
+    $> virtualenv env
+
+    and activate    
+    $> source env/bin/activate (deactivate)
+    
+    install kivy to envirement 
+    $> python3 -m pip install "kivy[full]" kivy_examples
+    
+    install graph plot lib - kivy_garden 
+    $> python3 -m pip install https://github.com/kivy-garden/graph/archive/master.zip
+
+    $> 
+    $> 
+
+
+
