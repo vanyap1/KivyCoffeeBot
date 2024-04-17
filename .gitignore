@@ -1,0 +1,13 @@
+# Atmel studio files
+
+/USB2I2C_Bridge/Debug
+/USB2I2C_Bridge/.vs
+#/USB2I2C_Bridge/obj
+
+# C# visual studio files
+
+# Py visual studio files
+/__pycache__
+
+
+
