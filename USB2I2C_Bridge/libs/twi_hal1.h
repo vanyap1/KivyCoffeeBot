@@ -39,6 +39,7 @@ enum{
 	TWI_NACK
 };
 
+
 uint8_t twi1DataReceived();
 
 void twi1_init(uint32_t speed);

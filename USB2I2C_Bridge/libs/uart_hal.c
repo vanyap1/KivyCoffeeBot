@@ -11,8 +11,8 @@ volatile static uint8_t rx_buffer[RX_BUFFER_SIZE] = {0};
 volatile static uint16_t rx_count = 0;	
 volatile static uint8_t uart_tx_busy = 1;
 static uint16_t rx_read_pos = 0;
-char rx_tmp_buffer[RX_BUFFER_SIZE]="";
-bool read_complete = true;
+uint8_t rx_tmp_buffer[RX_BUFFER_SIZE] = {0};
+bool read_complete = false;
 
 
 
@@ -21,7 +21,7 @@ bool serial_complete(void)
 	return read_complete;
 }
 
-const char* serial_read_data(void){
+const uint8_t* serial_read_data(void){
 	//uint8_t serial_read_data(void){
 	read_complete = false;
 	rx_count=0;
@@ -32,10 +32,11 @@ ISR(USART0_RX_vect){
 	
 	//volatile static uint16_t rx_write_pos = 0;
 	rx_tmp_buffer[rx_count] = UDR0;
-	if (rx_tmp_buffer[rx_count] == 0x0D){
+	if (rx_tmp_buffer[rx_count] == LF){
 		read_complete = true;
-		//Need to copy rx_tmp_buffer to > rx_buffer
-		rx_tmp_buffer[rx_count+1] = 0;
+		memset(rx_buffer, 0, RX_BUFFER_SIZE);
+		memcpy(rx_buffer, rx_tmp_buffer, RX_BUFFER_SIZE);
+		
 	}
 	rx_count +=1;
 	

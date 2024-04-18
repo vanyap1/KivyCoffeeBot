@@ -3,10 +3,6 @@
 /
 */ 
 
-#ifndef UART_HAL_H_
-#define UART_HAL_H_
-
-
 #include <stdint.h>
 #include "../config.h"
 #include <avr/io.h>
@@ -14,10 +10,22 @@
 #include <avr/interrupt.h>
 #include <stdbool.h>
 
-#define RX_BUFFER_SIZE 128
+
+
+#ifndef UART_HAL_H_
+#define UART_HAL_H_
+
+
+
+
+#define RX_BUFFER_SIZE	128		//RX buffer size
+#define CR				0x0d	//carriage return
+#define LF				0x0a	//line feed
+
+
 
 bool serial_complete(void);
-const char* serial_read_data(void);
+const uint8_t* serial_read_data(void);
 void uart_init(uint32_t baud,uint8_t high_speed);
 void uart_send_byte(uint8_t c);
 void uart_send_array(uint8_t *c,uint16_t len);
